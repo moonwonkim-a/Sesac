@@ -1,0 +1,34 @@
+### 회원가입
+POST http://localhost:8080/signup
+Content-Type: application/json
+Accept: */*
+
+{
+  "userId": "user01",
+  "userPass": "pass01",
+  "userName": "판다",
+  "userEmail": "panda@ohgiraffers.com",
+  "role": "ADMIN"
+}
+
+### 로그인 (비밀번호 포함하기 때문에 post방식으로 보낸다.)
+POST http://localhost:8080/login
+Content-Type: application/json
+Accept: */*
+
+{
+  "userId": "user01",
+  "userPass": "pass01"
+}
+
+### 토큰을 로컬 스토리지나 쿠키에 저장 해놔야 다른 곳에서도 처리할 수 있게 된다.
+### GET 요청
+### 로그인 성공했을 시 헤더 쪽 Authorization 에 있는 토큰을 아래에 같이 전달 해줘야 성공한다.
+GET http://localhost:8080/test
+Authorization: BEARER eyJkYXRlIjoxNzY0NzM1NzU0NTAwLCJ0eXBlIjoiand0IiwiYWxnIjoiSFMyNTYifQ.eyJSb2xlIjoiQURNSU4iLCJzdWIiOiJvaGdpcmFmZmVycyB0b2tlbiA6IDEiLCJ1c2VyTmFtZSI6Iu2MkOuLpCIsImV4cCI6MTc2NDgyMjE1NH0.ML_1SG39UNrS1rWMS0b2lATo4R-JMIFXVKc2b4IteRw
+
+### POST 요청
+POST http://localhost:8080/test
+Content-Type: application/json
+Accept: */*
+Authorization: BEARER eyJkYXRlIjoxNzY0NDc5MDQ5MjU0LCJ0eXBlIjoiand0IiwiYWxnIjoiSFMyNTYifQ.eyJSb2xlIjoiQURNSU4iLCJzdWIiOiJvaGdpcmFmZmVycyB0b2tlbiA6IDEiLCJ1c2VyTmFtZSI6Iu2MkOuLpCIsImV4cCI6MTc2NDU2NTQ0OX0.AIPLeJq6C8NbcpBLnRAu4qItXgH5Jl7rx4VVAsSVWos

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+<!--    MemberDTO bean 등록 -->
+    <bean id="member" class="com.ohgiraffers.common.MemberDTO">
+<!--    이 빈을 생성 할 때, 생성자에 아래 값들을 전달 (생성자 기반 의존성 주입) -->
+        <constructor-arg index="0" value="1"/> <!-- 0번 인덱스 파라미터에 숫자 1을 전달 -->
+        <constructor-arg name="id" value="user01"/> <!-- 이름이 'id'인 파라미터에 user01을 전달. -->
+        <constructor-arg index="2" value="pass01"/>
+        <constructor-arg name="name" value="홍길동"/>
+    </bean>
+</beans>

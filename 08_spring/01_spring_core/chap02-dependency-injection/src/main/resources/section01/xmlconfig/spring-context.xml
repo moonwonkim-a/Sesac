@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+<!--    클래스 속성은 인터페이스 타입이 아닌 구현 클래스 타입으로 작성해야 한다. -->
+    <bean id="account" class="com.ohgiraffers.common.PersonalAccount">
+        <constructor-arg index="0" value="20"/>
+        <constructor-arg index="1" value="110-222-33333"/>
+    </bean>
+<!--    &lt;!&ndash; 생성자 주입 방식 &ndash;&gt;-->
+<!--    <bean id="member" class="com.ohgiraffers.common.MemberDTO">-->
+<!--        <constructor-arg name="sequence" value="1"/>-->
+<!--        <constructor-arg name="name" value="문"/>-->
+<!--        &lt;!&ndash; 'account' 라는 이름의 빈을 찾아 인자로 주입(injection)해라 &ndash;&gt;-->
+<!--        <constructor-arg ref="account"/>-->
+<!--&lt;!&ndash;        <constructor-arg name="personalAccount">&ndash;&gt;-->
+<!--&lt;!&ndash;            <ref bean="account"/>&ndash;&gt;-->
+<!--&lt;!&ndash;        </constructor-arg>&ndash;&gt;-->
+<!--    </bean>-->
+    <!-- setter 주입 방식 (name 속성을 반드시 필드명과 동일하게 해준다) -->
+    <bean id = "member" class="com.ohgiraffers.common.MemberDTO">
+        <property name="sequence" value="1"/>
+        <property name="name" value="썬"/>
+        <property name="personalAccount" ref="account"/>
+    </bean>
+
+</beans>

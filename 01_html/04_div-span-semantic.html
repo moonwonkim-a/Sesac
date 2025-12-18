@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>레이아웃과 시맨틱</title>
+    <style>
+        div, span { border:1px solid red;}
+        header, main, footer, section { border: 2px solid blue;} 
+    </style>
+</head>
+<body>
+    <h1>영역을 나누는 기본 태그: div와 span</h1>
+
+    <h2>div 태그(블록(Block) 레벨 요소)</h2>
+    <!-- div : division, 한 '줄'을 통째로 차지 -->
+    <div>첫 번째 div 영역입니다.</div>
+    <div>두 번째 div 영역입니다.</div>
+
+    <h2>span 태그 (인라인(Inline) 요소)</h2>
+    <!-- span : 특정범위(span)을 지정한다는 뜻, '콘텐츠 크기만큼'의 공간만 차지 -->
+    <span>첫 번째 span 영역입니다.</span>
+    <span>두 번째 span 영역입니다.</span>
+
+    <hr>
+
+    <h2>의미를 담아 영역 나누기: 시맨틱 태그</h2>
+
+    <header>
+        <h1>My profile Page</h1>
+    </header>
+
+    <!-- main: 문서의 '핵심 내용'이 담기는 페이지에서 단 한번 사용되는 중요한 부분 -->
+    <main>
+        <!-- section: 연관있는 내용들을 그룹화 하는 '구역'을 의미 -->
+        <section>
+            <h2>소개</h2>
+            <p>Hi, I'm moon.</p>
+        </section>
+
+        <section>
+            <h2>보유 기술</h2>
+            <ul>
+                <li>HTML</li>
+                <li>CSS</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>Copyright 2025 Moon.</p>
+    </footer>
+
+</body>
+</html>

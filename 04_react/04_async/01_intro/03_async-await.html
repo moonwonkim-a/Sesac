@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function increase(number){
+            // new Promise 비동기 작업의 '약속 증서'를 만드는 것과 같다.
+            // 작업이 성공하면 resolve함수를, 실패하면 reject함수를 호출하기로 약속
+            const promise = new Promise((resolve,reject)=>{
+                setTimeout(()=>{
+                    const result = number + 10;
+                    if(result>40){
+                        const e = new Error('숫자가 너무 큽니다.');
+                        return reject(e);   // reject 함수를 호출하며 에러 전달.
+                    }
+                    resolve(result);
+                },1000)
+            });
+            // 생성된 promise 객체를 반환
+            return promise;
+        }
+        
+        async function run(){
+            console.log('작업 시작...');
+
+            // 에러가 발생핼 수 있는 비동기 코드는 try {...} 블록으로 감싸주었다.
+            try{
+                // await: Promise가 끝날 때 까지 기다렸다가, resolve된 결과 값을 result 변수에 할당.
+                let result = await increase(0);
+                console.log(result);
+
+                result = await increase(result);
+                console.log(result);
+
+                result = await increase(result);
+                console.log(result);
+
+                result = await increase(result);
+                console.log(result);
+
+                result = await increase(result);
+                console.log(result);
+
+                result = await increase(result);
+                console.log(result);
+
+            } catch(e){
+                console.error(e);
+            }
+            console.log('모든 작업이 끝났습니다.')
+        }
+        run();
+
+    </script>
+</body>
+</html>

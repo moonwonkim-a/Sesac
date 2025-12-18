@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>연습용 2일차</title>
+    <style>
+        table, th, td {
+            border: 2px solid green;
+            border-collapse: collapse;
+        }
+        .main-topic {
+            font-size: 50px;
+            color: green;
+        }
+        ul li {
+            font-size: 30px;
+            font-weight: 800;
+        }
+
+    </style>
+</head>
+<body>
+    <head>
+        <h1 id="start" style="font-size:80px; color:green;">목차</h1>
+        <ul>
+            <li><a href="#form">폼</a></li><br>
+            <li><a href="#link">링크</a></li><br>
+            <li><a href="#table">표</a></li><br>
+            <li><a href="#media">미디어</a></li><br>
+        </ul>
+    </head>
+    
+    <hr>
+    <main>
+        <section>
+            <h2 id="form" class="main-topic">폼</h2>
+            <form action="#" method="get">
+                <fieldset>
+                    <legend>연습</legend>
+                    <div>
+                        <label for="ID1"><b>연습용 ID</b>:</label>
+                        <input type="text" id="ID1" name="myID1" placeholder="입력하시오.">
+                    </div>
+                    <div>
+                        <label for="PW1"><b>비밀번호</b></label>
+                        <input type="password" name="myPw1" id="PW1" placeholder="입력하시오.">
+                    </div>
+                    <div>
+                        <p>복습 횟수</p>
+                        <input type="radio" id="1" name="횟수" value="bad" checked>
+                        <label for="1">1</label>
+                        <input type="radio" id="2" name="횟수" value="notbad">
+                        <label for="2">2</label>
+                        <input type="radio" id="3" name="횟수" value="so-so">
+                        <label for="3">3</label>
+                        <input type="radio" id="4" name="횟수" value="good">
+                        <label for="4">4</label>
+                        <input type="radio" id="5" name="횟수" value="👍">
+                        <label for="5">5</label>
+                    </div>
+                    <hr>
+                
+                    <div>
+                        <p>복습 내용 입력</p>
+                        <textarea name="memo" id="memo" rows="4"></textarea>
+                    </div>
+                    <button type="submit">끝</button>
+                </fieldset>
+            </form>
+            <br>
+            <a href="#start">🔼</a>
+        </section>
+        <hr>
+        <section>
+        <h2 id="link" class="main-topic">링크</h2>
+            <ul>
+                <p>사이트 링크목록</p>
+                <li><a href="https://www.naver.com" target="_blank"><b>네이버</b></a></li>
+                <li><a href="https://www.google.com" target="_blank"><b>구글</b></a></li>
+                <li><a href="https://github.com/20250922-sesac/02_css" target="_blank">깃허브 학습목록</a></li>
+            </ul>
+            <a href="#start">🔼</a>
+        </section>
+
+        <hr>
+        <section>
+            <h2 id="table" class="main-topic">표</h2>
+
+            <table>
+                <caption>
+                    <label for="capt">캡션입력</label>
+                    <input type="text" name="capt1" id="capt">
+                </caption>
+                <thead>
+                    <tr>
+                        <th> </th>
+                        <th>1행</th>
+                        <th>2행</th>
+                        <th>3행</th>
+                        <th>4행</th>
+                        <th>5행</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>1열</th>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                        <td>4</td>
+                        <td rowspan="5"> 5</td>
+                    </tr>
+                    <tr>
+                        <th>2열</th>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                        <td>4</td>
+                    </tr>
+                    <tr>
+                        <th>3열</th>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                        <td>4</td>
+                    </tr>
+                    <tr>
+                        <th>4열</th>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                        <td>4</td>
+                    </tr>
+                    <tr>
+                        <th>5열</th>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                        <td> 4</td>
+                    </tr>
+                </tbody>
+            </table>
+            <br>
+            <a href="#start">🔼</a>
+        </section>
+        <hr>
+        <section>
+            <h2 id="media" class="main-topic">미디어</h2>
+            <figure>
+                <img src="sample/image/flower1.PNG" alt="꽃사진1" width="500px" height="300px">
+                <figcaption>벛꽃</figcaption>
+            </figure>
+            <figure>
+                <img src="sample/image/flower2.PNG" alt="꽃사진2" width="500px" height="300px">
+                <figcaption>코스모스</figcaption>
+            </figure>
+            <br><br>
+            <figure>
+                <audio src="sample/audio/major.mp3" controls></audio>
+                <figcaption>무슨노래인지는 모름</figcaption>
+            </figure>
+            <br><br>
+            <figure>
+                <video src="sample/video/video1.mp4" controls></video>
+                <figcaption>동기부여 영상</figcaption>
+            </figure>
+            <br>
+            <a href="#start">🔼</a>
+        </section>
+    </main>
+    <br><br>
+    <hr>
+    <footer>
+        <p>2025.09.24</p>
+    </footer>
+</body>
+</html>

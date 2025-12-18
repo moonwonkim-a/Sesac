@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+
+        const{ useState,useEffect,useRef} = React;
+
+        function LoginComponent(){
+            const [form,setForm] = useState({
+                username: '',
+                password: ''
+            });
+
+            const usernameRef = useRef();
+
+            // useEffect를 사용해서, 컴포넌트가 렌더링된 후 username input에 포커스를 준다.
+            useEffect(()=> {
+                console.log('LoginComponent가 마운트 되었다.');
+                usernameRef.current.focus();
+            },[]);
+
+            const onChangeHandler = (e) => {
+                setForm({
+                    ...form,
+                    [e.target.name]: e.target.value
+                });
+            }
+            const onClickHandler = () => {
+                alert(`username: ${form.username}, password: ${form.password}`);
+                setForm({username:'',password:''});
+                usernameRef.current.focus();
+            };
+            return (
+                <>
+                    <input 
+                        type="text"
+                        name='username'
+                        placeholder='이름'
+                        onChange={onChangeHandler}
+                        value={form.username}
+                        ref={usernameRef}
+                        />
+                    <br/>
+                    <input 
+                        type="password"
+                        name='password'
+                        placeholder='비밀번호'
+                        onChange={onChangeHandler}
+                        value={form.password}
+                        />
+                    <br/>
+                    <button onClick={onClickHandler}>로그인</button>
+                </>
+            )
+        }
+
+
+
+        ReactDOM.createRoot(document.getElementById('root')).render(<LoginComponent/>);
+    </script>
+</body>
+</html>

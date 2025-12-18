@@ -1,0 +1,24 @@
+[
+  {
+    "id": 1,
+    "category": "python",
+    "question": "파이썬의 장점",
+    "answer": "간결한 문법과 강력한 라이브러리 생태계",
+    "tags": [
+      "python",
+      "programming",
+      "strength"
+    ]
+  },
+  {
+    "id": 2,
+    "category": "python",
+    "question": "리스트와 튜플의 차이",
+    "answer": "리스트는 가변(mutable), 튜플은 불변(immutable)",
+    "tags": [
+      "list",
+      "tuple",
+      "data_structure"
+    ]
+  }
+]

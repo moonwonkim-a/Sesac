@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+
+        console.log(React);
+
+        const {useState} = React; // React에서 useState 함수 꺼내오기(객체 구조분해할당)
+
+        function MessageManager() {
+
+            // 1. useState 호출: [상태 값, 상태 변경 함수] = useState(초기값)
+            const [message,setMessage] = useState('초기 상태 메세지입니다.');
+            const [textColor,setTextColor] = useState('black')
+            
+            // 2. 상태 변경 함수(Setter)를 호출하면 컴포넌트가 '리렌더링' 된다.
+            console.log('컴포넌트가 렌더링 되었습니다.') // state가 변경될때마다 컴포넌트함수가 다시 실행된다.
+
+            const handleEnter = () => {
+                setMessage('안녕하세요! 환영합니다.');
+                setTextColor('blue');
+            }
+            const handleLeave = () => {
+                setMessage('안녕히 가세요! 다음에 또 만나요');
+                setTextColor('red');
+            }
+            return (
+                <>
+                    <h1>useState</h1>
+                    <h2 style={{color: textColor}}>{message}</h2>
+                    <button onClick={handleEnter}>입장</button>
+                    <button onClick={handleLeave}>퇴장</button>
+                </>
+            )
+        }
+
+        function Counter(){
+            const[number,setNumber] = useState(0);
+
+            // 함수형 업데이트: 이전 상태 값을 안전하게 사용하기
+            // prevNumber 이름은 마음대로 지을 수 있다, React는 이 자리에 가장 최신의 상태 값을 받아온다.
+            const increaseByTwo = ()=>{
+                setNumber((prevNumber)=> prevNumber + 1);
+                setNumber((prevNumber)=> prevNumber + 1);
+            };
+
+            return (
+                <>
+                    <h2>현재 숫자: {number}</h2>
+                    <button onClick={()=> setNumber(number + 1)}>+1</button>
+                    <button onClick={()=> setNumber(number - 1)}>-1</button>
+
+                    <button onClick={()=> {
+                        setNumber(number +1);
+                        setNumber(number +1);
+                    }}>+2 (잘못된방식)</button>
+
+                    <button onClick={increaseByTwo}>+2 (함수형 업데이트)</button>
+                </>
+            )
+        }
+
+        function App(){
+            return(
+                <>
+                    <MessageManager/>
+                    <hr/>
+                    <Counter/>
+                </>
+            )
+        }
+
+        ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+    </script>
+</body>
+</html>

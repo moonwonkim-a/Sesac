@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        
+        const API_URL = 'https://jsonplaceholder.typicode.com/users';
+
+        // then() 체이닝 사용
+        function fetchDataWithThen(){
+            fetch(API_URL)
+                .then(response=>{
+                    console.log('1. Respsonse 객체 수신:', response);
+                    // Response 객체는 응답 헤더와 상태 코드 등을 담고 있다.
+                    // 데이터 본문(body)를 추출하려면 .json() 메소드를 호출해줘야 한다.
+                    // .json() 역시 Promise를 반환하므로, return 해줘야 다음 .then에서 받을 수 있다.
+                    if(!response.ok){
+                        throw new Errow(`HTTP error!`);
+                    }
+                    return response.json();
+                }).then(data=>{
+                    console.log('2. 실제 데이터', data);
+                }).catch(e=>{
+                    console.log(e);
+                });
+        }
+
+        // fetchDataWithThen();
+
+        async function fetchDataWithAsyncAwait(){
+            try {
+                const response = await fetch(API_URL)
+                console.log(response);
+                if(!response.ok){
+                    throw new Errow(`HTTP error!`);
+                }
+
+                const data = await response.json();
+                console.log(data);
+            } catch(e){
+                console.error(e);
+            }
+        }
+
+        fetchDataWithAsyncAwait();
+
+    </script>
+</body>
+</html>

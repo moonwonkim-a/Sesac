@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+        }
+
+        .container {
+            background: skyblue;
+            width: 100%;
+            height: 100vh;      /* 1vh는 화면의 높이 1% */
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            width: 100%;
+            height: 100px;
+            background: black;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .content {
+            flex-grow: 1;
+            background: lightgray;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .todo-list {
+            background: white;
+            width: 500px;
+            border: 1px solid black;
+            height: 500px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            padding-left: 50px;
+        }
+
+        .todo-list label {
+            margin: 20px;
+        }
+
+        .todo-list button {
+            border: none;
+            background: red;
+            border-radius: 10px;
+            color: white;
+        }
+
+        .append-list button {
+            background: green;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            height: 30px;
+        }
+
+        .footer {
+            width: 100%;
+            height: 100px;
+            display: flex;
+            background: black;
+            color: white;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+
+        const {useState} = React;
+
+
+        function Header() {
+            return (
+                <div className='header'>
+                    <h1>계획표 2025.10.14</h1>
+                </div>
+            )
+        }
+
+        // 자식 컴포넌트
+        // 데이터를 받아 화면에 그리고 부모가 시키는 일만 수행
+        function TodoItem({todos, onRemove, onToggle}){ // props로 todos를 받는다.(객체분해할당)
+            return(
+                <>
+                    {
+                        todos.map((todo)=>(
+                            <p key={todo.id}>
+                                <input 
+                                    id = {todo.id}
+                                    type="checkbox" 
+                                    checked={todo.isDone}
+                                    onChange={()=> onToggle(todo.id)}
+                                    />
+                                <label 
+                                    htmlFor={todo.id}
+                                    style={{textDecoration: todo.isDone? 'line-through':'none'}}>
+                                    {todo.text}    
+                                </label>   
+                                <button onClick={() => onRemove(todo.id)}>x</button>
+                            </p>
+                        ))
+                    }
+                </>
+            )
+        }
+
+        // 부모 컴포넌트
+        // 상태(state), 상태를 변경하는 모든 로직을 이 컴포넌트가 책임진다.
+        function TodoList(){
+
+            const [todos,setTodos] = useState([{id:1, text: '리액트 Todo-List 만들기', isDone: true}])
+            const [inputText,setInputText] = useState('');
+            const [nextId,setNextId] = useState(2);
+
+            const handleInputChange = (e) => setInputText(e.target.value);
+            // 추가버튼 눌렀을 때 
+            const handleAdd = () => {
+                if(inputText.trim() === '') return;
+                const newTodo = {id: nextId, text: inputText, isDone: false};
+                setTodos([...todos,newTodo]);
+                setNextId(nextId +1);
+                setInputText('');
+            };
+            // 삭제
+            const handleRemove = (id) => {
+                const updatedTodos = todos.filter(todo => todo.id !== id);
+                setTodos(updatedTodos);
+            }
+            // 토글
+            const handleToggle = (id) => {
+                const updatedTodos = todos.map(todo => 
+                    todo.id === id ? {...todo, isDone: !todo.isDone} : todo
+                );
+                setTodos(updatedTodos);
+            }
+
+            return(
+                <>
+                    <h3>ToDo-List</h3>
+                    <div className='todo-list'>
+                        <TodoItem 
+                            todos={todos}
+                            onRemove={handleRemove}
+                            onToggle={handleToggle}/> {/* 자식에게 state와 변경 함수를 props로 전달*/}
+                            
+                    </div>
+                    <div className='append-list'>
+                        <input type='text'
+                                value={inputText}
+                                onChange={handleInputChange}
+                                onKeyDown={(e)=>{if(e.key === 'Enter') handleAdd();}}
+                                />
+                        <button onClick={handleAdd}>추가하기</button>
+                    </div>
+                </>
+            )
+        }
+
+        function Content() {
+            return (
+                <div className='content'>
+                    <TodoList/>
+                </div>
+            )
+        }
+
+        function Footer() {
+            return (
+                <div className='footer'>
+
+                </div>
+            )
+        }
+
+        function TodoApp(){
+            return (
+                <div>
+                    <Header/>
+                    <Content/>
+                    <Footer/>    
+                </div>
+            )
+        }
+
+
+        ReactDOM.createRoot(document.getElementById('root')).render(<TodoApp/>);
+    </script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://unpkg.com/prop-types@15.8.1/prop-types.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        /*
+            props: 부모 컴포넌트가 자식 컴포넌트에게 데이터를 전달하는 '통로'
+            - 읽기 전용(read-only) 데이터이다.(자식은 props를 수정할 수 없음)
+            - 데이터는 항상 위에서 아래로(Top-down) 흐른다.
+        */
+        // 자식 컴포넌트 
+        function Greeting({name = '기본이름',favoriteNumber = 0,children}){
+            return (
+            <>
+                <h1>안녕하세요, {name} 님</h1>
+                <h2>내가 좋아하는 숫자는 {favoriteNumber}</h2>
+                <p>
+                    전달된 자식요소(children): <span style={{color: 'orangered'}}>{children}</span>
+                </p>
+            </>
+        )
+        }
+
+        // Greeting에 규칙을 정해줌
+        Greeting.propTypes = {
+            name: PropTypes.string,
+            favoriteNumber: PropTypes.number
+        };
+
+        // 부모 컴포넌트
+        function App(){
+            const name1 = '김문원'
+            return (
+                <>
+                    <Greeting name={name1} favoriteNumber={3}>
+                        React 공부중 {/* children */}
+                    </Greeting>
+                    <Greeting>
+                        props를 넘기지 않으면 기본값이 적용된다.
+                    </Greeting>
+                    <Greeting name={0}>규칙을 어기면 warning</Greeting>
+                </>
+            )
+        }
+
+
+        ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+    </script>
+</body>
+</html>

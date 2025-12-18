@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+
+        const {useState,useEffect,useCallback}=React;
+
+        function Square({genSqureStyle}){
+            console.log('자식 컴포넌트가 렌더링 되었습니다.');
+            // 부모가 준 스타일을 저장할 state
+            const [style,setStyle] = useState({});
+            // 부모가 준 genSquareStyle 함수가 변경 될 때만, 스타일을 새로 만들어서 적용
+            useEffect(()=>{
+                console.log('자식의 useEffect 실행');
+                setStyle(genSqureStyle())
+            },[genSqureStyle]);
+
+            //  state에 저장된 스타일로 div를 그린다.
+            return <div style={style}></div>
+        };
+
+        function App(){
+            const [size,setSize]=useState(200);
+            const [isDark,setIsDark]=useState(false);
+
+            const genSquareStyle = useCallback(() => {
+                return {
+                    backgroundColor: 'orangered',
+                    width: `${size}px`,
+                    height: `${size}px`
+                };
+            },[size]);
+
+            return(
+                // isDark state에 따라 배경색이 바뀌는 div
+                <div style={{backgroundColor: isDark ? 'black':'white'}}>
+                    <input 
+                        type="range"
+                        min='100'
+                        max='300'
+                        onChange={(e)=>{setSize(parseInt(e.target.value))}}
+                        />
+                    <button onClick={()=>setIsDark(!isDark)}>태마변경</button>
+                    <Square genSqureStyle={genSquareStyle}/>
+                </div>
+            )
+        };
+
+        ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+    </script>
+</body>
+</html>

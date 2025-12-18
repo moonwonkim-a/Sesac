@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <style>
+        body { font-family: sans-serif; background: #f0f0f0; }
+        .container { display: flex; flex-wrap: wrap; justify-content: center; }
+        .card {
+        background: white;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        width: 220px;
+        margin: 10px;
+        padding: 15px;
+        text-align: center;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .card img {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        }
+        .card h3 { margin: 10px 0 5px; }
+        .card p { margin: 0; font-size: 14px; color: #555; }
+        .error { 
+            color: white;
+            font-size: 100px;
+            background-color: rgb(238, 92, 92);
+            margin: 20px;
+            padding: 50px;
+            border-radius: 30px;}
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+
+        const {useState, useEffect} = React;
+        const API_URL = 'https://rickandmortyapi.com/api/character'
+
+        function CharacterList(){
+            // 1. 필요한 상태(캐릭터 목록, 로딩, 에러)를 정의한다.
+            const [characters,setCharacters] = useState([]);
+            const [loading,setLoading] = useState(true);
+            const [error,setError] = useState(null);            
+            // 2. 전체 캐릭터 목록 API를 호출.
+            useEffect(() => {
+                axios.get('https://rickandmortyapi.com/api/character')
+                    .then(response => setCharacters(response.data.results))
+                    .catch(error => {
+                        console.error('릭이 방해하는 중', error);
+                    setError(error);
+                    })
+                    .finally(() => setLoading(false));
+                }, []);
+
+            if(loading){
+                return <p className='loading'>로딩 중...</p>
+            }
+            if(error){
+                return <p className='error'>릭의 방해로 인해 오류가 발생했습니다. {error.message}</p>;
+            }
+            return(
+                // 캐릭터 카드 목록 렌더링
+                <div className='container'>
+                    {characters.map(character=> <CharacterCard key={character.id} character={character} />)}
+                </div>
+            )
+        };
+        // props로 받은 데이터를 순수하게 렌더링 하는 역할만 한다.
+        function CharacterCard({character}){
+            return(
+                <div className='card'>
+                    <img src={character.image} />
+                    <h2 style={{fontWeight: 'bold'}}>{character.name}</h2>
+                    <p>{character.status}-{character.species}</p>
+                </div>
+            )
+        };
+
+        function App(){
+            return (
+                <div>
+                    <h1 style={{textAlign: 'center'}}>릭 앤 모티 캐릭터 도감(김문원)</h1>    
+                    <CharacterList/>
+                </div>
+            )
+        };
+
+        ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+    </script>
+</body>
+</html>
+

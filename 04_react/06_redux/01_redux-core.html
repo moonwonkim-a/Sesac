@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/redux@4.2.0/dist/redux.js"></script>
+</head>
+<body>
+    <p>Redux의 3요소인 Store, Action, Reducer가 어떻게 상호작용 하는지 배워보자.</p>
+    <script>
+        // 1. Reducer: Acetion을 보고 상태(state)를 어떻게 바꿀지 결정한다.
+        // (현재 상태, 액션 객체) => 다음 상태
+        function counterReducer(state = 0, action){
+            console.log(`Reducer 호출 현재 state: ${state}, action:`,action); // action 에는 type과 payroad(값) 이 있다.
+
+            // Action 객체의 type값에 따라 상태를 어떻게 변경할지 결정
+            switch(action.type){
+                case 'INCREMENT':
+                    return state + 1;
+                case 'DECREMENT':
+                    return state - 1;
+                default:
+                    return state;
+            }
+        }
+
+        // 2. Store(스토어): 우리 앱의 모든 상태가 저장되는 '창고'
+        // Redux 라이브러리의 createStore 함수를 사용해서 리듀서와 연결
+        const {createStore} = Redux;
+        
+        const store = createStore(counterReducer);
+        console.log(store);
+
+        // 3. Store는 상태 변화를 감지하고 싶을 때
+        //    subscribe는 상태가 변경될 때마다 등록된 함수를 실행한다.
+        store.subscribe(()=> {
+            console.log('상태 변경 감지 -> 새로운 상태:', store.getState());
+        });
+
+        // 4. Action(액션)을 통해 상태 변경 '요청'하기
+        //    상태를 변경하는 유일한 방법은 store.dispatch()로 Action객체를 보내는 것이다.
+        store.dispatch({type: 'INCREMENT'});  // Reducer 호출
+        store.dispatch({type: 'INCREMENT'});
+        store.dispatch({type: 'DECREMENT'});
+    </script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 이거 없으면 Axios 못씀 -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script> 
+</head>
+<body>
+    <script>
+
+        const API_URL = 'https://jsonplaceholder.typicode.com/users';
+
+        async function callApiWithFetch() {
+            try{
+                const response = await fetch(API_URL);
+                const data = await response.json(); // .json()으로 직접 파싱해야 함
+                console.log(data);
+            } catch(e){
+                console.error(e);
+            }
+        }
+        
+        async function callApiWithAxios() {
+            try{
+                const response = await axios.get(API_URL);
+                const data = response.data; // json 파싱이 자동으로 되어 response.data에 담겨있다.
+                console.log(data);
+                console.log(response);
+            } catch(e) {
+                console.error(e);
+            }
+        }
+
+        callApiWithFetch();
+        callApiWithAxios();
+    </script>
+</body>
+</html>

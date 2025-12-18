@@ -1,0 +1,19 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "C:/Users/Admin/Desktop/audio"
+		},
+		{
+			"path": "C:/Users/Admin/Desktop/image"
+		},
+		{
+			"path": "C:/Users/Admin/Desktop/video"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "01_html"
+	}
+}

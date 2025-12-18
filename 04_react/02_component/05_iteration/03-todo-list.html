@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+
+        const {useState} = React;
+        const headerStyle = {
+            backgroundColor: 'skyblue',
+            color:'black',
+            textAlign: 'center',
+            fontSize: 60,
+            margin: 60
+        };
+
+        function Header() {
+            return (
+                <div>
+                    <h1 style={headerStyle}>계획표 2025.10.14</h1>
+                </div>
+            )
+        }
+
+        // 자식 컴포넌트
+        // 데이터를 받아 화면에 그리고 부모가 시키는 일만 수행
+        function TodoItem({item, ontoggle, on}){
+            return(
+                <>
+
+                </>
+            )
+        }
+
+        // 부모 컴포넌트
+        // 상태(state), 상태를 변경하는 모든 로직을 이 컴포넌트가 책임진다.
+        function TodoList(){
+            const[inputValue,setInputValue] = useState('');
+            const[lists,setList] = useState([{id:1,text:'할일 예시(삭제가능)'}]);
+            const[nextId,setNextId] = useState(2);
+            const handleAdd = ()=> {
+                if (inputValue.trim() ==='') return;
+                const newList = {id: nextId, text: inputValue};
+                setList([...lists, newList]);
+                setNextId(nextId + 1);
+                setInputValue('');
+            };
+            const handleRemove = (idToRemove) => {
+                const updatedList = lists.filter(list=>list.id !== idToRemove);
+                setList(updatedList);
+            };
+            const handleEnter = (e) => {
+                if (e.key === 'Enter'){
+                    handleAdd();
+                }
+            };
+
+            return(
+                <>
+                    <input type="text"
+                        value={inputValue}
+                        onChange={(e)=> setInputValue(e.target.value)}
+                        placeholder=''
+                        style={{height: 30}}
+                        onKeyDown={handleEnter}
+                        />
+                    <button onClick={handleAdd}>추가</button>
+                    <ul>
+                        {lists.map((list)=>(
+                            <li key={list.id}>{list.text}
+                                    <button onClick={()=>handleRemove(list.id)}>✖</button>
+                            </li>
+                        ))}
+                    </ul>
+                    <TodoItem/>
+                </>
+            )
+        }
+
+        function Content() {
+            return (
+                <>
+                    <TodoList/>
+                </>
+            )
+        }
+
+        function Footer() {
+            return (
+                <>
+
+                </>
+            )
+        }
+
+        function TodoApp(){
+            return (
+                <div>
+                    <Header/>
+                    <Content/>
+                    <Footer/>    
+                </div>
+            )
+        }
+
+
+        ReactDOM.createRoot(document.getElementById('root')).render(<TodoApp/>);
+    </script>
+</body>
+</html>

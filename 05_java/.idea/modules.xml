@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/05_java.iml" filepath="$PROJECT_DIR$/.idea/05_java.iml" />
+      <module fileurl="file://$PROJECT_DIR$/chap01-literal-and-variable/chap01-literal-and-variable.iml" filepath="$PROJECT_DIR$/chap01-literal-and-variable/chap01-literal-and-variable.iml" />
+      <module fileurl="file://$PROJECT_DIR$/chap02-operator/chap02-operator.iml" filepath="$PROJECT_DIR$/chap02-operator/chap02-operator.iml" />
+      <module fileurl="file://$PROJECT_DIR$/chap03-method-and-api/chap03-method-and-api.iml" filepath="$PROJECT_DIR$/chap03-method-and-api/chap03-method-and-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/chap04-control-flow/chap04-control-flow.iml" filepath="$PROJECT_DIR$/chap04-control-flow/chap04-control-flow.iml" />
+      <module fileurl="file://$PROJECT_DIR$/chap05-array/chap05-array.iml" filepath="$PROJECT_DIR$/chap05-array/chap05-array.iml" />
+      <module fileurl="file://$PROJECT_DIR$/chap06-class-and-object/chap06-class-and-object.iml" filepath="$PROJECT_DIR$/chap06-class-and-object/chap06-class-and-object.iml" />
+      <module fileurl="file://$PROJECT_DIR$/chap07-object-array/chap07-object-array.iml" filepath="$PROJECT_DIR$/chap07-object-array/chap07-object-array.iml" />
+      <module fileurl="file://$PROJECT_DIR$/chap08-inheritance/chap08-inheritance.iml" filepath="$PROJECT_DIR$/chap08-inheritance/chap08-inheritance.iml" />
+      <module fileurl="file://$PROJECT_DIR$/chap09-polymorphism/chap09-polymorphism.iml" filepath="$PROJECT_DIR$/chap09-polymorphism/chap09-polymorphism.iml" />
+      <module fileurl="file://$PROJECT_DIR$/chap10-api/chap10-api.iml" filepath="$PROJECT_DIR$/chap10-api/chap10-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/chap11-generic/chap11-generic.iml" filepath="$PROJECT_DIR$/chap11-generic/chap11-generic.iml" />
+      <module fileurl="file://$PROJECT_DIR$/chap12-collection/chap12-collection.iml" filepath="$PROJECT_DIR$/chap12-collection/chap12-collection.iml" />
+      <module fileurl="file://$PROJECT_DIR$/chap13-exception/chap13-exception.iml" filepath="$PROJECT_DIR$/chap13-exception/chap13-exception.iml" />
+      <module fileurl="file://$PROJECT_DIR$/chap14-io/chap14-io.iml" filepath="$PROJECT_DIR$/chap14-io/chap14-io.iml" />
+      <module fileurl="file://$PROJECT_DIR$/chap15-enum/chap15-enum.iml" filepath="$PROJECT_DIR$/chap15-enum/chap15-enum.iml" />
+      <module fileurl="file://$PROJECT_DIR$/chap16-lambda/chap16-lambda.iml" filepath="$PROJECT_DIR$/chap16-lambda/chap16-lambda.iml" />
+      <module fileurl="file://$PROJECT_DIR$/chap17-stream/chap17-stream.iml" filepath="$PROJECT_DIR$/chap17-stream/chap17-stream.iml" />
+    </modules>
+  </component>
+</project>

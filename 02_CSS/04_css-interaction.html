@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .button{
+            display: inline-block;
+            padding: 15px 30px;
+            margin: 20px;
+            background-color: rgb(5, 61, 83);
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            /* 상태가 변할 때 부드러운 애니메이션 효과 주기 */
+            transition: all 0.3s ease;    /* all: 모든 속성 변화에 / 0.3초동안 / 부드럽게 */
+        }
+        /* hover: 마우스 커서를 올렸을 떄의 상태를 선택 */
+        .button:hover {
+            background-color: rgb(54, 54, 201);
+            /* transform: 요소의 모양을변형시키는 속성 */
+            transform: translateY(-5px); /* Y축으로 -5px(위쪽으로) 이동 (음수는 위로, 양수는 아래로 이동)*/
+            box-shadow: 0 5px 20px rgb(2, 7, 51);
+        }
+        /* active: 요소를 클릭하고 있는 동안의 상태를 선택 */
+        .button:active {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 10px rgb(2, 7, 51);
+        }
+    </style>
+</head>
+<body>
+    <h1>마우스 반응과 부드러운 효과</h1>
+    <p>가상 클래스 선택자(:hover)와 트랜지션(transition)을 이용해 생동감을 불어넣을 수 있다.</p>
+
+    <a href="#" class="button">마우스를 올려보세요</a>
+</body>
+</html>

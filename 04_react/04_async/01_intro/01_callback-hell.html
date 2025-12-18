@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        function sayHello(){
+            console.log('3초 뒤에 음식이 나왔습니다.');
+        }
+
+        console.log('햄버거를 주문합니다.');
+
+        setTimeout(sayHello, 3000);
+
+        console.log('감자튀김을 주문합니다.');
+
+        // 콜백지옥
+        function increase(number,callback){
+            setTimeout(()=>{
+                const result = number + 10;
+                console.log(result);
+                if (callback){
+                    callback(result);   // 작업이 끝나면 다음 할 일(callback)을 실행
+                }
+            },1000);
+        };
+
+        console.log('작업 시작...');
+        
+        increase(0, (result)=>{
+            increase(result,(result)=>{
+                increase(result,(result)=>{
+                    console.log('작업이 끝났습니다.');
+                })
+            })
+        })
+
+
+    </script>
+</body>
+</html>

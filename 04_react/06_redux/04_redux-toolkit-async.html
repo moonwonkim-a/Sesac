@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://unpkg.com/@reduxjs/toolkit@1.9.5/dist/redux-toolkit.umd.js"></script>
+    <script src="https://unpkg.com/react-redux@8.0.4/dist/react-redux.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+
+        const { Provider, useSelector, useDispatch } = ReactRedux;
+        const { createSlice, configureStore, createAsyncThunk } = RTK;
+
+        // 01. createAsyncThunk: 비동기 액션을 만들어주는 함수
+        // 로딩중(pending), 성공(fulfilled), 실패(rejected) 상태에 대한 액션을 자동으로 만들어준다.
+        const fetchUsers = createAsyncThunk('users/fetch', async()=>{
+            const res = await fetch('https://jsonplaceholder.typicode.com/users');
+            const users = await res.json();
+            return users;   // 리듀서에서 action.payload로 받을 수 있다.
+        })
+
+        // 02. Slice 생성
+        const usersSlice = createSlice({
+            name: 'users',
+            initialState: {
+                userList:[],
+                loadingStatus:'idle' // 'idle' | 'loading' | 'succeeded' | 'failed'
+            },
+            reducers: {},    // 동기 액션은 이쪽에 저장
+            extraReducers: (builder) => {
+                builder
+                    .addCase(fetchUsers.pending, (state) => {
+                        state.loadingStatus = 'loading';
+                    })
+                    .addCase(fetchUsers.fulfilled, (state,action) => {
+                        state.loadingStatus = 'succeeded' // 성공
+                        state.userList = action.payload; // action.payload에 API 결과가 담겨온다.
+                    })
+                    .addCase(fetchUsers.rejected, (state)=> {
+                        state.loadingStatus = 'failed';   // 실패
+                    })
+            }
+        })
+        // 3. Store 설정
+        const store = configureStore({
+            reducer:{
+                users: usersSlice.reducer
+            }
+        })
+
+        // 4. React Component
+    function App(){
+        const {userList, loadingStatus} = useSelector(state => state.users)
+        const dispatch = useDispatch();
+
+        return (
+            <>
+                <h1>회원 목록(비동기)</h1>
+                <button
+                    onClick={()=>dispatch(fetchUsers())}
+                    disabled={loadingStatus ==='loading'}
+                >
+                        {loadingStatus === 'loading' ? '불러오는중...' : '회원 목록 조회'}    
+                    </button>
+                    {loadingStatus === 'succeeded' && (
+                        <ul>
+                            {userList.map(user=> <li key={user.id}>{user.name}</li>)}    
+                        </ul>
+                    )}
+                    {loadingStatus === 'failed' && <p>데이터를 불러오는 데 실패했습니다.</p>}
+            </>
+        )
+    }
+
+        ReactDOM.createRoot(document.getElementById('root')).render(
+            <Provider store={store}>
+                <App/>
+            </Provider>
+        );
+    </script>
+</body>
+</html>

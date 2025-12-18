@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자기소개</title>
+    <link href="https://fonts.googleapis.com/css2?family=Diphylleia&display=swap" rel="stylesheet">
+    <style>
+        /* 브라우저마다 기본적으로 가진 여백 초기화 */
+        body, h1, h1, p, ul, table {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "Diphylleia", serif;
+            background-color: rgb(175, 204, 216);
+            line-height: 35px;
+        }
+        /* 페이지전체를 감싸는 컨테이너(가운데 정렬을 위해) */
+        .container {
+            width: 90%;
+            max-width: 800px; /* 화면크기가 커져도 최대 너비는 800px 이상은 넘어가지 않음 */
+            margin: 40px auto; /* 위아래 40px, 좌우는 자동으로 여백을 줘서 가운데 정렬 */
+            background-color: white;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        h1 {
+            font-size: 45px;
+            font-weight: bolder;
+            color: rgb(12, 110, 68);
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            display: inline-block;
+            background-color: rgb(187, 163, 126);
+            padding: 15px 10px;
+            border-radius: 10px;
+            box-shadow: 5px 5px rgb(75, 74, 74);
+            text-align: center;
+            margin-left: 10px;
+            font-weight: 100;
+            font-size: 30px;
+            width: 280px;
+        }
+
+        ul {
+            list-style: none; /* ul의 기본스타일(점) 제거 */
+        }
+
+        .skills {
+            display: flex;
+            justify-content: left;
+            margin-left: 10px;
+        }
+
+        .html, .css, .javascript, .react {
+            
+            
+            border-radius: 17px;
+            padding: 2px 10px;
+            margin: auto 5px;
+            background-color: seagreen;
+            color: white;
+            text-decoration: none;
+            transition: all 0.8s ease;
+        }
+
+        .cell:hover {
+            background-color: rgb(3, 36, 46);
+            transform: translateY(-5px);
+        }
+
+
+        table {
+            border: 2px solid none;
+            border-collapse: collapse;
+            width: 780px;
+            text-align: center;
+            margin: 20px 10px;
+            background-color: rgb(211, 211, 211);
+        }
+
+        .head {
+            border: 1px solid gray;
+        }
+        .body {
+             border: 1px solid gray;
+        }
+
+        .picture {
+            text-align: center;
+        }
+
+        .link>p {
+            margin-left: 10px;
+        }
+
+        input[type="text"], textarea {
+            width: 700px;
+            margin: auto 5px;
+        }
+        button[type="submit"] {
+            display: inline-block;
+            border-radius: 5px;
+            transition: all 0.1sec ease;
+            background-color: rgb(21, 133, 96);
+            color: white;
+        }
+        button[type="submit"]:active {
+            transform: translateZ(-1px); /* Z축으로 -1px(위쪽으로) 이동 (음수는 위로, 양수는 아래로 이동)*/
+            background-color: rgb(6, 83, 73);           
+        }
+
+
+
+        .audios audio {
+            display: block;
+            margin: 20px auto;
+            max-width: 100%;
+        }
+
+        .END {
+            display: flex;
+            justify-content: space-between;
+            margin: 3px 5px;
+        }
+        .button {
+            display: inline-block;
+            border: none;
+            border-radius: 5px;
+            margin: auto 2px;
+            background-color: rgb(187, 163, 126);
+            color: white;
+        }
+
+        form {
+            margin: auto 10px;
+            }
+    </style>
+
+</head>
+<body  id="TOP">
+    <div class="container">
+        <header>
+            <h1>김문원 (Moonwon Kim)</h1>
+            <p>안녕하세요! 성장을 즐기는 예비 개발자 <b>김문원</b>입니다.<br><mark><i>"하면 된다"</i></mark>라는 말을 좋아합니다.</p>
+        </header>
+
+        <main>
+            <section>
+                <h2>🏆보유 기술(Skills)</h2>
+                <ul class="skills">
+                    <li><a href="#" class="skills html cell">HTML5</a></li>
+                    <li><a href="#" class="skills css cell">CSS3</a></li>
+                    <li><a href="#" class="skills javascript cell">JavaScript</a></li>
+                    <li><a href="#" class="skills react cell">React</a></li>
+                </ul>
+            </section>
+
+            <hr>
+
+            <section>
+                <h2>🕰시간표 (Schedule)</h2>
+                <table>
+                    <caption>2025 1학기 시간표</caption>
+                    <thead class="table head">
+                        <tr>
+                        <th class="head L">시간</th>
+                        <th class="head C">월요일</th>
+                        <th class="head R">수요일</th>
+                        </tr>
+                    </thead>
+                    <tbody class="table body">
+                        <tr>
+                        <th class="body L">1교시</th>
+                        <td class="body C">웹 프로그래밍 기초</td>
+                        <td class="body R" rowspan="2">자료구조</td>
+                        </tr>
+                        <tr>
+                        <th class="body L">2교시</th>
+                        <td class="body C">웹 프로그래밍 기초</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <hr>
+
+            <section>
+                <h2>🎨좋아하는 사진</h2>
+                <figure class="picture">
+                    <img src="sample/image/tower1.PNG" alt="타워" width="700px" height="500px">
+                    <figcaption>프랑스 에펠탑</figcaption>
+                </figure>
+            </section>
+
+            <section class="audios">
+                <h2>🎧좋아하는 음악</h2><br>
+                <audio src="sample/audio/major.mp3" controls></audio>
+            </section>
+
+            <hr>
+
+            <section class="link">
+                <h2>🎈관련 링크 (Links)</h2>
+                <p>저의 포트폴리오를 더 보고싶다면 <a href="https://github.com/moonwonkim-a?tab=repositories" target="_blank">제 깃허브</a>를 방문해주세요.</p>
+            </section>
+
+            <hr>
+
+            <section>
+                <h2>✉방명록(Guestbook)</h2>
+                <form action="#" method="get">
+                    <fieldset>
+                        <legend>방명록 남기기</legend>
+                        <div>
+                            <label for="user-name">이름:</label><br>
+                            <input type="text" id="user-name" name="userName" placeholder="당신의 이름">
+                        </div>
+                        <div>
+                            <label for="memo">내용:</label><br>
+                            <textarea name="memo" id="memo" rows="7" placeholder="응원의 한마디"></textarea>
+                        </div>
+                        <button type="submit">남기기</button>
+                        <div>
+                            <p>응원의 정도(익명성 보장)</p>
+                            <input type="radio" id="mind" name="M">
+                            <label for="mind">1</label>
+                            <input type="radio" id="mind" name="M">
+                            <label for="mind">2</label>
+                            <input type="radio" id="mind" name="M">
+                            <label for="mind">3</label>
+                            <input type="radio" id="mind" name="M">
+                            <label for="mind">4</label>
+                            <input type="radio" id="mind" name="M">
+                            <label for="mind">5</label>
+                        </div>
+                    </fieldset>
+                    
+                </form>
+            </section>
+        </main>
+
+        <footer>
+            <div class="END">
+                <p>Copyright 2025.Moonwon Kim.All rights reserved.</p>
+                <button class="button"><a href="#TOP">위로</a></button>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

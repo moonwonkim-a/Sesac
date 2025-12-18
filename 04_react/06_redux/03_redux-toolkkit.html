@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://unpkg.com/@reduxjs/toolkit@1.9.5/dist/redux-toolkit.umd.js"></script>
+    <script src="https://unpkg.com/react-redux@8.0.4/dist/react-redux.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+
+        const { Provider, useSelector, useDispatch} = ReactRedux;
+        const { createSlice, configureStore} = RTK;  // Redux Roolkit
+
+        // 1. createSlice: 액션 타입, 액션 생성 함수, 리듀서를 한 번에 만든다.
+        const counterSlice = createSlice({
+            name: 'counter' ,   // Slice(리듀서)의 이름(만들어지는 액션 type:'counter/increment')
+            initialState: {value: 0},   // 상태 초기값
+            reducers: { // 리듀서 로직
+                increment: (state, action) => {
+                    // RTK는 내부적으로 Immr 라이브러리를 사용하여
+                    // 상태를 직접 수정하는 것처럼 코드를 짜도 불변성을 지켜준다. (스프레드문법같은거 안써도됨)
+                    state.value += action.payload;
+                },
+                decrement: (state, action) => {
+                    state.value -= action.payload;
+                }
+            }
+        });
+        console.log(counterSlice);
+
+        // 2. createSlice가 자동으로 만들어준 액션 생성 함수와 리듀서 꺼내기
+        const { increment,decrement} = counterSlice.actions;
+        const counterReducer = counterSlice.reducer;
+
+        // 3. configureStore
+        const store = configureStore({
+            reducer: {
+                // 여러 slice를 여기에 등록해서 관리할 수 있다. (지금은 예시로 하나만 등록해놓음)
+                counter: counterReducer
+            }
+        });
+
+        // 4. React Component
+        function App() {
+            // configureStore에 등록한 키(counter)로 접근한다.
+            const count = useSelector(state => state.counter.value);
+            const dispatch = useDispatch();
+
+            return (
+                <>
+                    <h1>Counter: {count}</h1>
+                    <button onClick={()=> dispatch(increment(1))}>+1</button> {/* increment(payload값) */}
+                    <button onClick={()=> dispatch(decrement(1))}>-1</button> {/* decrement(payload값) */}
+                </>
+            )
+        }
+
+        ReactDOM.createRoot(document.getElementById('root')).render(
+            <Provider store={store}>
+                <App/>
+            </Provider>
+        );
+    </script>
+</body>
+</html>

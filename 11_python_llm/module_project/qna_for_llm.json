@@ -1,0 +1,14 @@
+[
+  {
+    "question": "파이썬의 장점은?",
+    "answer": "간결한 문법과 강력한 라이브러리 생태계"
+  },
+  {
+    "question": "리스트와 튜플의 차이는?",
+    "answer": "리스트는 가변(mutable), 튜플은 불변(immutable)"
+  },
+  {
+    "question": "f-string 이란?",
+    "answer": "파이썬 3.6부터 도입된 편리한 문자열 포맷팅 방법"
+  }
+]

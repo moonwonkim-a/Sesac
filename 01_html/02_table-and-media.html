@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>표와 미디어</title>
+    <style>
+        table, th, td {
+            border:1px solid black;
+            border-collapse: collapse;
+        }
+        th, td{ padding: 10px}
+    </style>
+</head>
+<body>
+    <h1>표(Table)로 데이터 정리하기</h1>
+    <!-- table : 전체 표를 감싸는 태그 -->
+    <table>
+        <!-- caption : 표의 제목이나 설명을 붙이는 태그 -->
+         <caption>웹 개발 스터디 시간표</caption>
+        <!-- thead : 표의 헤더 부분을 그룹화 -->
+        <thead>
+        <!-- tr : 표의 한 '행'을 의미 -->
+        <tr>
+            <!-- th :  표의 제목 셀. 자동으로 굵게 표시됨 -->
+            <th>시간</th>
+            <th>월요일</th>
+            <th>수요일</th>
+            <th>금요일</th>
+        </tr>
+        </thead>
+        <!-- tbody : 표의 본문(내용) 부분을 그룹화 -->
+        <tbody>
+        <tr>
+            <th>1교시 (09:00 ~ 10:00)</th>
+            <!-- td : 기본 셀 -->
+            <td>HTML 기초</td>
+            <!-- rowspan='2' : 이 칸은 아래칸과 합쳐서 '2줄'을 차지합니다. -->
+            <td rowspan="2">javascript 기초</td>
+            <td>HTML 심화</td>
+        </tr>
+        <tr>
+            <th>2교시 (10:00 ~ 11:00)</th>
+            <!-- (개인매모) 윗칸에서 이미 javascript 기초가 2칸을 차지하는것으로 입력 되었기 때문에 2행 javascript 기초는 입력 안해줘도됨. -->
+            <td>CSS 기초</td>
+            <!-- colspan='2' : 이 칸은 오른쪽 칸과 합쳐서 '2칸'을 차지합니다. -->
+            <td colspan="2">미니 프로젝트</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <hr>
+
+    <h2>미디어로 페이지 꾸미기</h2>
+
+    <h2>이미지 넣기</h2>
+    <!-- img: 이미지를 삽입하는 태그 -->
+    <!-- src = 소스, 경로를 탐색 // alt = 대체택스트 -->
+    <!-- (개인매모)소스를 추가적으로 삽입할 때는 그냥 띄어쓰기 하면 됨. -->
+    <!-- (개인매모)with 너비 // height 높이 -->
+    <figure> 
+    <img src="sample/image/tower1.PNG" alt="타워" width="300" height="200">
+    <figcaption>이것은 figure 태그를 이용한 이미지 설명입니다.</figcaption>
+    </figure>
+
+    <h2>오디오 넣기</h2>
+    <!-- audio: 오디오 파일을 삽입하는 태그 -->
+    <audio src="sample/audio/major.mp3" controls></audio>
+
+    <h2>비디오 넣기</h2>
+    <!-- video : 비디오 파일을 삽입하는 태그 -->
+    <video src="sample/video/video1.mp4" controls width="300"></video>
+</body>
+</html>

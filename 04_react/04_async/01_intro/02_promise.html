@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function increase(number){
+            // new Promise 비동기 작업의 '약속 증서'를 만드는 것과 같다.
+            // 작업이 성공하면 resolve함수를, 실패하면 reject함수를 호출하기로 약속
+            const promise = new Promise((resolve,reject)=>{
+                setTimeout(()=>{
+                    const result = number + 10;
+                    if(result>40){
+                        const e = new Error('숫자가 너무 큽니다.');
+                        return reject(e);   // reject 함수를 호출하며 에러 전달.
+                    }
+                    resolve(result);
+                },1000)
+            });
+            // 생성된 promise 객체를 반환
+            return promise;
+        }
+
+        console.log('작업 시작....');
+
+        increase(0)
+            //  첫 번째 increase가 성공(resolve)하면 그 결과(number)를 받아서 실행
+            .then(number => {
+                console.log(number);
+                return increase(number);    // 다음 작업을 위해 새로운 Promise를 반환
+            })
+            .then(number=>{
+                console.log(number);
+                return increase(number);
+            })
+            .then(number=>{
+                console.log(number);
+                return increase(number);
+            })
+            .then(number=>{
+                console.log(number);
+                return increase(number);
+            })
+            .then(number=>{
+                console.log(number);
+                return increase(number);
+            })
+            .then(number=>{
+                console.log(number);
+                return increase(number);
+            })
+            .catch(e => { // .then() 체인 중간에 실패(reject)하면 여기서 잡힘
+                console.error(e);
+            })
+            .finally(()=> { // 성공 실패 상관없이 무조건 실행
+                console.log('모든 작업이 끝났습니다.');
+            });
+        
+    </script>
+</body>
+</html>
